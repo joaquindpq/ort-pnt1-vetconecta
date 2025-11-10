@@ -1,0 +1,113 @@
+@model AppMascotas.Models.Turno
+
+@{
+    ViewData["Title"] = "Eliminar Turno";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header con advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-header-danger">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div class="header-icon-circle">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-white mb-1 fw-bold">Confirmar Eliminación</h1>
+                            <p class="text-white mb-0 header-subtitle">¿Está seguro que desea eliminar este turno?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-danger border-0 shadow-sm alert-no-border" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle icon-large me-3"></i>
+                    <div>
+                        <h5 class="alert-heading mb-2">Advertencia</h5>
+                        <p class="mb-0">
+                            Esta acci&oacute;n eliminar&aacute; permanentemente el turno programado para 
+                            <strong>@Model.FechaHora.ToString("dd/MM/yyyy")</strong> a las <strong>@Model.FechaHora.ToString("HH:mm")</strong>.
+                            Esta operaci&oacute;n no se puede deshacer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Informaci?n del Turno -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header bg-dark text-white card-rounded-custom">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-calendar me-2"></i>Informaci&oacute;n del Turno
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-calendar text-primary me-2"></i>Fecha y Hora
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.FechaHora.ToString("dd/MM/yyyy HH:mm")</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-stethoscope text-info me-2"></i>Motivo
+                                </small>
+                                <h6 class="mb-0">@Model.Motivo</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-info-circle text-secondary me-2"></i>Registrado en
+                                </small>
+                                <p class="mb-0">@Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confirmaci?n y acciones -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header card-header-yellow">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-exclamation-triangle me-2"></i>Acci&oacute;n Requerida
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <p class="mb-4">Si confirmas, el turno ser&aacute; eliminado permanentemente.</p>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex gap-3 justify-content-center">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg btn-pill btn-split-left">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg btn-pill btn-split-right">
+                                <i class="fas fa-trash me-2"></i>Confirmar Eliminaci&oacute;n
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

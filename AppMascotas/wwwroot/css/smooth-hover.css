@@ -1,0 +1,277 @@
+/* ============================================
+   SMOOTH HOVER EFFECTS - Sistema de Gestión Veterinaria
+   Efectos Suaves y Elegantes
+   ============================================ */
+
+/* Transiciones suaves para todos los elementos interactivos */
+.card,
+.btn,
+.table tbody tr,
+.list-group-item,
+.form-control,
+.form-select {
+    transition: all 0.25s ease;
+}
+
+/* ============================================
+   CARDS - Efecto hover MUY suave
+   ============================================ */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Cards dentro de grids - Sin transform para evitar saltos */
+.col-md-6 .card,
+.col-lg-4 .card,
+.col-lg-6 .card {
+    transition: box-shadow 0.3s ease;
+}
+
+.col-md-6 .card:hover,
+.col-lg-4 .card:hover,
+.col-lg-6 .card:hover {
+    transform: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Desactivar hover en cards de header */
+.card[style*="background: linear-gradient"]:hover {
+    transform: none;
+    box-shadow: none !important;
+}
+
+/* ============================================
+   BOTONES - Efecto hover sutil
+   ============================================ */
+.btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Botones grandes (lg) */
+.btn-lg:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Grupo de botones pequeños */
+.btn-group .btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+}
+
+/* ============================================
+   FILAS DE TABLAS - Efecto hover MUY suave
+   ============================================ */
+.table tbody tr {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(248, 249, 250, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+    transform: none; /* Eliminamos el scale que causaba saltos */
+}
+
+/* ============================================
+   FORMULARIOS - Efecto focus suave
+   ============================================ */
+.form-control,
+.form-select {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.15);
+    border-width: 2px;
+    transform: none; /* Sin elevación en focus */
+}
+
+/* ============================================
+   LIST GROUP ITEMS - Efecto hover suave
+   ============================================ */
+.list-group-item {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(233, 236, 239, 0.4) !important;
+    transform: translateX(2px);
+}
+
+/* ============================================
+   BADGES - Efecto hover sutil
+   ============================================ */
+.badge {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.badge:hover {
+    transform: scale(1.03);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================
+   LINKS - Efecto hover suave
+   ============================================ */
+a {
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+a:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+/* ============================================
+   FILTROS Y NAVEGACIÓN
+   ============================================ */
+.btn-group > .btn {
+    transition: all 0.2s ease;
+}
+
+.btn-group > .btn:hover:not(:disabled):not(.disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   ALERTS - Sin hover (elementos estáticos)
+   ============================================ */
+.alert {
+    transition: none;
+}
+
+.alert:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ============================================
+   CONTENEDORES CON INFORMACIÓN
+   ============================================ */
+.p-3[style*="background"] {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.p-3[style*="background"]:hover {
+    background-color: rgba(233, 236, 239, 0.6) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    transform: none; /* Sin escala */
+}
+
+/* ============================================
+   ICONOS - Efecto hover sutil
+   ============================================ */
+.fas,
+.far,
+.fab {
+    transition: transform 0.2s ease;
+}
+
+a:hover .fas,
+a:hover .far,
+a:hover .fab,
+button:hover .fas,
+button:hover .far,
+button:hover .fab {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   DESACTIVAR HOVER EN ELEMENTOS ESTÁTICOS
+   ============================================ */
+.card-header,
+thead,
+.navbar,
+.footer-modern,
+.alert:not(.alert-dismissible) {
+    transition: none !important;
+}
+
+.card-header:hover,
+thead:hover,
+.navbar:hover,
+.footer-modern:hover,
+.alert:not(.alert-dismissible):hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ============================================
+   STATS Y WIDGETS - Hover muy suave
+   ============================================ */
+.col-lg-3 .card:hover,
+.col-md-3 .card:hover {
+    transform: none;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ============================================
+   RESPONSIVE - Desactivar efectos en móviles
+   ============================================ */
+@media (max-width: 768px) {
+    .card:hover,
+    .table tbody tr:hover,
+    .list-group-item:hover {
+        transform: none !important;
+    }
+    
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+}
+
+/* ============================================
+   ACCESIBILIDAD - Mantener efectos en focus
+   ============================================ */
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
+    outline: 2px solid #4A90E2;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.15);
+}
+
+/* ============================================
+   SPACING - Consistencia global con container
+   ============================================ */
+.container {
+    padding-bottom: 3rem !important;
+}
+
+/* ============================================
+   TABLAS - Mejorar bordes y espaciado
+   ============================================ */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table thead th {
+    border: none !important;
+}
+
+.table tbody td {
+    border-top: 1px solid rgba(0,0,0,0.05);
+}

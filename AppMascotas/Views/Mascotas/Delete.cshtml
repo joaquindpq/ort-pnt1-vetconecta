@@ -1,0 +1,199 @@
+@model AppMascotas.Models.Mascota
+
+@{
+    ViewData["Title"] = "Eliminar Mascota";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header con advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-header-danger">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h1 class="text-white mb-1 fw-bold">Confirmar Eliminación</h1>
+                            <p class="text-white mb-0 header-subtitle">¿Está seguro que desea eliminar esta mascota?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-danger border-0 shadow-sm alert-no-border" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle icon-large me-3"></i>
+                    <div>
+                        <h5 class="alert-heading mb-2">Advertencia Importante</h5>
+                        <p class="mb-0">
+                            Esta acci&oacute;n eliminar&aacute; permanentemente a <strong>@Model.Nombre</strong> 
+                            y todos los turnos asociados. Esta operaci&oacute;n no se puede deshacer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Informaci?n de la Mascota -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header bg-dark text-white card-rounded-custom">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-paw me-2"></i>Informaci&oacute;n de la Mascota
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-paw text-success me-2"></i>@Html.DisplayNameFor(model => model.Nombre)
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.Nombre</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-tag text-info me-2"></i>@Html.DisplayNameFor(model => model.Especie)
+                                </small>
+                                <h6 class="mb-0">@Model.Especie</h6>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Raza))
+                        {
+                            <div class="col-md-6">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-dna text-warning me-2"></i>@Html.DisplayNameFor(model => model.Raza)
+                                    </small>
+                                    <h6 class="mb-0">@Model.Raza</h6>
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.Sexo))
+                        {
+                            <div class="col-md-6">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-venus-mars text-danger me-2"></i>@Html.DisplayNameFor(model => model.Sexo)
+                                    </small>
+                                    <h6 class="mb-0">@Model.Sexo</h6>
+                                </div>
+                            </div>
+                        }
+
+                        @if (Model.FechaNacimiento.HasValue)
+                        {
+                            <div class="col-md-6">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-birthday-cake text-primary me-2"></i>Edad
+                                    </small>
+                                    <h6 class="mb-0">
+                                        @{
+                                            var edad = (DateTime.Now - Model.FechaNacimiento.Value).Days / 365;
+                                            var meses = ((DateTime.Now - Model.FechaNacimiento.Value).Days % 365) / 30;
+                                        }
+                                        @edad a&ntilde;o(s) @if (meses > 0) { <span>, @meses mes(es)</span> }
+                                    </h6>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>Due&ntilde;o
+                                </small>
+                                <h6 class="mb-0">@Model.Dueno?.NombreCompleto</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Turnos que ser?n eliminados -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header card-header-yellow">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-calendar-alt me-2"></i>Turnos Asociados
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    @if (Model.Turnos.Any())
+                    {
+                        <div class="alert alert-warning border-0" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>¡Atenci&oacute;n!</strong> Los siguientes <strong>@Model.Turnos.Count turno(s)</strong> tambi&eacute;n ser&aacute;n eliminados:
+                        </div>
+                        <div class="list-group">
+                            @foreach (var turno in Model.Turnos.OrderByDescending(t => t.FechaHora).Take(5))
+                            {
+                                <div class="list-group-item list-group-item-custom mb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">
+                                                <i class="fas fa-calendar text-warning me-2"></i>@turno.FechaHora.ToString("dd/MM/yyyy HH:mm")
+                                            </h6>
+                                            <small class="text-muted">@turno.Motivo</small>
+                                            <span class="badge @(turno.Estado == "Pendiente" ? "bg-warning" : turno.Estado == "Realizado" ? "bg-success" : "bg-danger") ms-2">
+                                                @turno.Estado
+                                            </span>
+                                        </div>
+                                        <i class="fas fa-times-circle text-danger icon-large"></i>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model.Turnos.Count > 5)
+                            {
+                                <p class="text-muted text-center mb-0 mt-2">
+                                    <small>Y @(Model.Turnos.Count - 5) turno(s) m&aacute;s...</small>
+                                </p>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success border-0" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Esta mascota no tiene turnos asociados.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de confirmaci?n -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-4 text-center">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex gap-3 justify-content-center">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg btn-pill">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg btn-pill">
+                                <i class="fas fa-trash me-2"></i>Confirmar Eliminaci&oacute;n
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

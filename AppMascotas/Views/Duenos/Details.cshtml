@@ -1,0 +1,212 @@
+@model AppMascotas.Models.Dueno
+
+@{
+    ViewData["Title"] = "Detalles del Dueño";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm header-gradient-primary">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon-circle">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-white mb-1 fw-bold">@Model.NombreCompleto</h1>
+                                <p class="text-white mb-0 header-subtitle">Información completa del propietario</p>
+                            </div>
+                        </div>
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-lg text-white me-2 btn-pill">
+                                <i class="fas fa-edit me-2"></i>Editar
+                            </a>
+                            <a asp-action="Index" class="btn btn-light btn-lg btn-pill">
+                                <i class="fas fa-arrow-left me-2"></i>Volver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Información Personal -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 card-rounded-custom">
+                <div class="card-header card-header-blue">
+                    <h5 class="text-white mb-0 fw-bold">
+                        <i class="fas fa-user-circle me-2"></i>Información Personal
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>@Html.DisplayNameFor(model => model.NombreCompleto)
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.NombreCompleto</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-id-card text-info me-2"></i>@Html.DisplayNameFor(model => model.Dni)
+                                </small>
+                                <h6 class="mb-0">@Model.Dni</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-calendar text-warning me-2"></i>@Html.DisplayNameFor(model => model.FechaRegistro)
+                                </small>
+                                <h6 class="mb-0">@Model.FechaRegistro.ToString("dd/MM/yyyy")</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información de Contacto -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 card-rounded-custom">
+                <div class="card-header card-header-green">
+                    <h5 class="text-white mb-0 fw-bold">
+                        <i class="fas fa-address-book me-2"></i>Información de Contacto
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-phone text-success me-2"></i>@Html.DisplayNameFor(model => model.Telefono)
+                                </small>
+                                <h6 class="mb-0">
+                                    <a href="tel:@Model.Telefono" class="text-decoration-none text-dark">@Model.Telefono</a>
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-envelope text-info me-2"></i>@Html.DisplayNameFor(model => model.Email)
+                                </small>
+                                <h6 class="mb-0">
+                                    @if (!string.IsNullOrEmpty(Model.Email))
+                                    {
+                                        <a href="mailto:@Model.Email" class="text-decoration-none text-dark">@Model.Email</a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No especificado</span>
+                                    }
+                                </h6>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>@Html.DisplayNameFor(model => model.Direccion)
+                                </small>
+                                <h6 class="mb-0">
+                                    @if (!string.IsNullOrEmpty(Model.Direccion))
+                                    {
+                                        @Model.Direccion
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">No especificada</span>
+                                    }
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mascotas del Dueño -->
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header card-header-teal">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="text-white mb-0 fw-bold">
+                            <i class="fas fa-paw me-2"></i>Mascotas Registradas
+                        </h5>
+                        <span class="badge bg-light text-dark badge-count">
+                            Total: @Model.Mascotas.Count
+                        </span>
+                    </div>
+                </div>
+                <div class="card-body p-4">
+                    @if (Model.Mascotas.Any())
+                    {
+                        <div class="row">
+                            @foreach (var mascota in Model.Mascotas)
+                            {
+                                <div class="col-md-6 col-lg-4 mb-3">
+                                    <div class="card border-0 shadow-sm pet-card-light">
+                                        <div class="card-body p-3">
+                                            <h6 class="fw-bold mb-2">
+                                                <i class="fas fa-paw text-info me-2"></i>@mascota.Nombre
+                                            </h6>
+                                            <p class="mb-1"><small class="text-muted">Especie:</small> <strong>@mascota.Especie</strong></p>
+                                            @if (!string.IsNullOrEmpty(mascota.Raza))
+                                            {
+                                                <p class="mb-2"><small class="text-muted">Raza:</small> @mascota.Raza</p>
+                                            }
+                                            <a asp-controller="Mascotas" asp-action="Details" asp-route-id="@mascota.Id" 
+                                               class="btn btn-sm btn-info text-white w-100 btn-rounded-outline" title="Ver detalles">
+                                                <i class="fas fa-eye me-1"></i>Ver Detalles
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-4">
+                            <i class="fas fa-paw placeholder-icon-large"></i>
+                            <p class="text-muted mt-3 mb-0">Este dueño no tiene mascotas registradas aún.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-3">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-rounded-outline">
+                            <i class="fas fa-list me-2"></i>Volver al Listado
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-white btn-edit-custom">
+                            <i class="fas fa-edit me-2"></i>Editar Información
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-delete-custom">
+                            <i class="fas fa-trash me-2"></i>Eliminar Dueño
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+@model AppMascotas.Models.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0" style="border-radius: 16px;">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);">
+                            <i class="fas fa-user-plus" style="font-size: 2rem; color: white;"></i>
+                        </div>
+                        <h2 class="fw-bold mb-2">Registro de Veterinaria</h2>
+                        <p class="text-muted">Crea tu cuenta para gestionar tu veterinaria</p>
+                    </div>
+
+                    <form asp-action="Register" method="post">
+                        @if (ViewData.ModelState.ErrorCount > 0)
+                        {
+                            <div asp-validation-summary="All" class="alert alert-danger" style="border-radius: 12px;"></div>
+                        }
+
+                        <div class="mb-3">
+                            <label asp-for="NombreVeterinaria" class="form-label fw-semibold">Nombre de la Veterinaria</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-clinic-medical text-muted"></i>
+                                </span>
+                                <input asp-for="NombreVeterinaria" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="Ej: Veterinaria San Francisco" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="NombreVeterinaria" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-envelope text-muted"></i>
+                                </span>
+                                <input asp-for="Email" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="tu@email.com" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Telefono" class="form-label fw-semibold">Teléfono</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-phone text-muted"></i>
+                                </span>
+                                <input asp-for="Telefono" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="Ej: 011 4567-8900" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="Telefono" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Direccion" class="form-label fw-semibold">Dirección</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-map-marker-alt text-muted"></i>
+                                </span>
+                                <input asp-for="Direccion" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="Ej: Av. Corrientes 1234, Buenos Aires" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="Direccion" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold">Contraseña</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-lock text-muted"></i>
+                                </span>
+                                <input asp-for="Password" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="Mínimo 6 caracteres" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="ConfirmPassword" class="form-label fw-semibold">Confirmar Contraseña</label>
+                            <div class="input-group" style="border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                                <span class="input-group-text bg-light border-0" style="padding: 0.75rem 1rem;">
+                                    <i class="fas fa-lock text-muted"></i>
+                                </span>
+                                <input asp-for="ConfirmPassword" 
+                                       class="form-control border-0 bg-light" 
+                                       placeholder="Repite tu contraseña" 
+                                       style="padding: 0.75rem 1rem;" />
+                            </div>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid mb-4">
+                            <button type="submit" 
+                                    class="btn btn-primary btn-lg fw-semibold" 
+                                    style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); border: none; border-radius: 12px; padding: 0.875rem; box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3); transition: all 0.3s ease;">
+                                <i class="fas fa-user-plus me-2"></i>Registrarse
+                            </button>
+                        </div>
+
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">
+                                ¿Ya tienes cuenta? 
+                                <a asp-action="Login" class="text-decoration-none fw-semibold" style="color: #4A90E2;">
+                                    Inicia sesión aquí
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus {
+        background-color: white !important;
+        box-shadow: none !important;
+    }
+    
+    .input-group:focus-within {
+        box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2) !important;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4) !important;
+    }
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

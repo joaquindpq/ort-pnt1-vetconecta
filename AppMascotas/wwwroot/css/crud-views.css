@@ -1,0 +1,501 @@
+/* ============================================
+   CRUD VIEWS - ESTILOS CENTRALIZADOS
+   ============================================ */
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.header-subtitle {
+    opacity: 0.9;
+}
+
+.text-preline {
+    white-space: pre-line;
+}
+
+.alert-no-border {
+    border: none;
+}
+
+.details-box-light {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.badge-count {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+}
+
+.pet-card-light {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.pet-card-light:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-circle {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+}
+
+.badge-sex-male {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.badge-sex-female {
+    background: linear-gradient(135deg, #e83e8c 0%, #d63384 100%);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.text-link-primary {
+    color: #007bff;
+    transition: color 0.2s ease;
+}
+
+.text-link-primary:hover {
+    color: #0056b3;
+}
+
+.placeholder-circle-large {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.icon-large {
+    font-size: 2rem;
+}
+
+/* ============================================
+   CARD HEADER COLOR VARIANTS
+   ============================================ */
+.card-header-blue {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    border-radius: 16px 16px 0 0;
+    border: none;
+    color: white;
+}
+
+.card-header-green {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    border-radius: 16px 16px 0 0;
+    border: none;
+    color: white;
+}
+
+.card-header-teal {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    border-radius: 16px 16px 0 0;
+    border: none;
+    color: white;
+}
+
+.card-header-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border-radius: 25px;
+    border: none;
+}
+
+.btn-sm-outline-custom {
+    border-width: 2px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-sm-outline-custom:hover {
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   FORM CONTROLS
+   ============================================ */
+.form-control:focus,
+.form-select:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+}
+
+.form-control-lg-custom {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+    height: 50px;
+}
+
+.form-textarea-custom {
+    border-radius: 12px;
+    border: 2px solid #e9ecef;
+}
+
+/* Focus states for different forms */
+.create-form .form-control:focus,
+.create-form .form-select:focus {
+    border-color: #17a2b8;
+    box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.25);
+}
+
+.edit-form .form-control:focus,
+.edit-form .form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+.btn-rounded-custom {
+    border-radius: 12px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+}
+
+.btn-rounded-outline {
+    border-radius: 12px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    border-width: 2px;
+}
+
+.btn-rounded-small {
+    border-radius: 10px;
+    font-weight: 600;
+    border-width: 2px;
+}
+
+.btn-rounded-detail {
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-info-custom {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-info-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+    color: white;
+}
+
+.btn-back-custom {
+    border-radius: 12px;
+    padding: 0.875rem 2rem;
+    border-width: 2px;
+    transition: all 0.3s ease;
+}
+
+.btn-back-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-edit-custom {
+    background: linear-gradient(135deg, #F5A623 0%, #E09612 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.btn-edit-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+    color: white;
+}
+
+.btn-delete-custom {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem 1.5rem;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-delete-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+}
+
+/* Botón estilo pill */
+.btn-pill {
+    border-radius: 50px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+}
+
+/* Botones con altura fija para buscador */
+.btn-search-height {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botones con esquinas redondeadas para grupos */
+.btn-rounded-left {
+    border-radius: 8px 0 0 8px;
+}
+
+.btn-rounded-right {
+    border-radius: 0 8px 8px 0;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+.card-rounded-custom {
+    border-radius: 16px;
+}
+
+.card-rounded-lg {
+    border-radius: 20px;
+}
+
+.card-rounded-header {
+    border-radius: 25px;
+}
+
+.card-hover-effect:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   HEADERS - GRADIENT BACKGROUNDS
+   ============================================ */
+.header-gradient-primary {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+    border-radius: 25px;
+}
+
+.header-icon-circle {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px !important;
+    flex-shrink: 0;
+}
+
+.header-icon-circle i {
+    font-size: 1.75rem;
+    color: white;
+}
+
+/* ============================================
+   DETAILS VIEW SPECIFIC
+   ============================================ */
+.details-icon-circle-primary {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+.details-icon-circle-primary i {
+    font-size: 2rem;
+    color: white;
+}
+
+.details-badge-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.details-badge-success {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.details-info-card {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.details-contact-card {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.details-item-box {
+    background: white;
+    border-radius: 12px;
+}
+
+.details-pet-card {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.details-pet-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.details-alert-info {
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+    color: #0c5460;
+}
+
+.paw-icon-empty {
+    font-size: 3rem;
+    color: #dee2e6;
+}
+
+/* ============================================
+   CONTAINER PADDING
+   ============================================ */
+.container-fluid-custom {
+    padding-bottom: 3rem !important;
+}
+
+/* ============================================
+   FULLCALENDAR CUSTOM STYLES
+   ============================================ */
+.fc {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.fc .fc-toolbar-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.fc .fc-button {
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.fc .fc-button-primary {
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+}
+
+.fc .fc-button-primary:hover {
+    background-color: #34495E;
+    border-color: #34495E;
+}
+
+.fc-event {
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+#calendar {
+    background: white;
+    padding: 20px;
+}
+
+/* Badge estado (turnos) */
+.badge-estado {
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+.badge-estado-warning { background: var(--bs-warning); color: #212529; }
+.badge-estado-success { background: var(--bs-success); color: #fff; }
+.badge-estado-danger { background: var(--bs-danger); color: #fff; }
+
+/* Turno row transition */
+.turno-row-transition { transition: all 0.3s ease; }
+
+/* Small btn rounded helpers for btn-groups */
+.btn-rounded-left { border-radius: 8px 0 0 8px !important; }
+.btn-rounded-middle { border-radius: 0 !important; }
+.btn-rounded-right { border-radius: 0 8px 8px 0 !important; }
+
+/* Table header gradient for turnos */
+.table-header-gradient { background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%); }
+.table-header-gradient th { color: #fff; font-weight: 700; border: none; }
+
+/* List-group item hover */
+.list-group-item-custom { background: #f8f9fa; border-radius: 12px; }
+.list-group-item-custom:hover { background: #e9ecef !important; transition: all 0.2s ease; }
+
+/* Card header yellow (observations) */
+.card-header-yellow {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    border-radius: 16px 16px 0 0;
+    border: none;
+    color: white;
+}
+
+/* Access denied icon circle */
+.access-icon-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.access-icon-circle i { font-size: 3rem; color: white; }
+
+/* Button outline primary split corner helpers */
+.btn-split-left { border-radius: 12px 0 0 12px; }
+.btn-split-right { border-radius: 0 12px 12px 0; }
+
+/* Placeholder large icon reuse */
+.placeholder-icon-large { font-size: 3rem; color: #adb5bd; }
+
+/* Ensure container spacing utility (already added) */
+.container-padding-bottom { padding-bottom: 3rem !important; }

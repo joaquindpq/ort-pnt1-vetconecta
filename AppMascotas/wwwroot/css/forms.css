@@ -1,0 +1,298 @@
+/* ===================================================
+   MODERN FORMS STYLES - Estilos para formularios modernos
+   =================================================== */
+
+/* Contenedores de formularios */
+.form-control:focus,
+.form-select:focus {
+    background-color: white !important;
+    box-shadow: none !important;
+}
+
+.input-group:focus-within {
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.2) !important;
+}
+
+/* Input groups modernos */
+.input-group-modern {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.input-group-modern .input-group-text {
+    padding: 0.75rem 1rem;
+}
+
+.input-group-modern .form-control,
+.input-group-modern .form-select {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+/* Card de formulario moderna */
+.card-form-modern {
+    border-radius: 16px;
+}
+
+.card-form-modern .card-body {
+    padding: 3rem;
+}
+
+/* Icono circular de encabezado */
+.header-icon-circle {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-icon-circle i {
+    font-size: 2rem;
+    color: white;
+}
+
+/* Gradientes de iconos */
+.icon-gradient-orange {
+    background: linear-gradient(135deg, #F5A623 0%, #E09612 100%);
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+}
+
+.icon-gradient-red {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.icon-gradient-blue {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.icon-gradient-green {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* Botones de formularios */
+.btn-modern-primary {
+    background: linear-gradient(135deg, #F5A623 0%, #E09612 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem;
+    box-shadow: 0 4px 15px rgba(245, 166, 35, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-modern-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-modern-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+    border: none;
+    border-radius: 12px;
+    padding: 0.875rem;
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-modern-outline {
+    border-radius: 12px;
+    padding: 0.875rem;
+    border-width: 2px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.btn-warning:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4) !important;
+}
+
+.btn-outline-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4) !important;
+}
+
+.btn-modern-primary:hover,
+.btn-modern-danger:hover,
+.btn-modern-info:hover {
+    transform: translateY(-2px);
+}
+
+/* Cards de información */
+.info-card-gradient {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.info-card-green {
+    border-radius: 16px;
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.info-card-white {
+    padding: 0.75rem;
+    background: white;
+    border-radius: 12px;
+}
+
+/* Alerts modernos */
+.alert-modern {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.alert-gradient-yellow {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+}
+
+.alert-gradient-red {
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+}
+
+.alert-gradient-green {
+    background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+}
+
+.alert-gradient-light {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Badge con gradiente */
+.badge-gradient-yellow {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge-gradient-green {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge-gradient-red {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge-gradient-blue-male {
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+.badge-gradient-pink-female {
+    background: linear-gradient(135deg, #FF6B8A 0%, #E74C6D 100%);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+}
+
+/* Avatar circular */
+.avatar-circle {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.avatar-circle i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+/* Transiciones suaves para filas de tabla */
+tbody tr {
+    transition: all 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: rgb(248, 249, 250);
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+.btn-info:hover {
+    box-shadow: 0 6px 20px rgba(23, 162, 184, 0.4) !important;
+}
+
+/* Cards con hover effect */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+.container-fluid {
+    padding-bottom: 3rem !important;
+}
+
+/* Header de tabla moderna */
+.table-header-dark {
+    background: linear-gradient(135deg, #2C3E50 0%, #34495E 100%);
+}
+
+.table-header-dark th {
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem;
+    border: none;
+}
+
+/* Filas de tabla con avatar */
+.table-avatar-circle {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+}
+
+.table-avatar-circle span {
+    color: white;
+    font-weight: bold;
+}

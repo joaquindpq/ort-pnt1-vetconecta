@@ -1,0 +1,225 @@
+﻿@{
+    ViewData["Title"] = "Mapa de Veterinarias";
+}
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<section class="hero-section" style="padding: 2rem 0 1rem 0;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 text-center">
+                <h1 class="hero-title">
+                    Mapa de <span class="brand-highlight">Veterinarias</span>
+                </h1>
+                <p class="hero-subtitle" style="margin-bottom: 0;">
+                   ¿Necesitás encontrar una veterinaria cerca de tu ubicación? Encontrala acá! Utiliza nuestro mapa interactivo y encuentra veterinarias recomendadas por VetConecta 
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-section" style="padding-top: 1.5rem;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="map-controls mb-3">
+                    <button id="mapSearchBtn" class="btn btn-primary map-btn-rounded">
+                        <i class="fas fa-search"></i> Buscar Veterinarias Cercanas
+                    </button>
+                    <button id="mapClearBtn" class="btn btn-secondary ms-2 map-btn-rounded">
+                        <i class="fas fa-times"></i> Limpiar Mapa
+                    </button>
+                    <span id="mapResultCount" class="ms-3 text-muted fw-bold"></span>
+                </div>
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+                <div class="map-legend mt-4">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle"></i>
+                        <strong>Tip:</strong> Haz clic en los marcadores para ver más información sobre cada veterinaria.
+                        El botón "Buscar Veterinarias Cercanas" busca nuevas ubicaciones en OpenStreetMap.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        (function() {
+            let map;
+            let markers = [];
+            let searchCount = 0;
+
+            const ICON_CONFIG = {
+                icon: 'fa-paw',
+                color: '#F5A623',
+                borderColor: '#E09612',
+                iconColor: '#FFFFFF',
+                size: 35,
+                shadowEnabled: true
+            };
+
+            function initMap() {
+                const capitalFederal = [-34.6037, -58.3816];
+
+                map = L.map('map').setView(capitalFederal, 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 19
+                }).addTo(map);
+
+                const centerMarker = L.marker(capitalFederal, {
+                    icon: L.divIcon({
+                        className: 'center-marker',
+                        html: '<div class="center-paw"><i class="fas fa-paw"></i></div>',
+                        iconSize: [40, 40],
+                        iconAnchor: [20, 40]
+                    })
+                }).addTo(map);
+                centerMarker.bindPopup('<b>Capital Federal</b><br>Centro de búsqueda');
+            }
+
+            async function searchVeterinaries() {
+                const btn = document.getElementById('mapSearchBtn');
+                const resultCount = document.getElementById('mapResultCount');
+                
+                if (!btn || !resultCount) {
+                    return;
+                }
+                
+                searchCount++;
+                
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando...';
+                resultCount.textContent = 'Buscando veterinarias en OpenStreetMap...';
+                resultCount.style.color = '#666';
+
+                clearMarkers();
+
+                try {
+                    const query = `
+                        [out:json][timeout:25];
+                        (
+                            node["amenity"="veterinary"](around:8000,-34.6037,-58.3816);
+                            way["amenity"="veterinary"](around:8000,-34.6037,-58.3816);
+                            node["shop"="pet"]["veterinary"="yes"](around:8000,-34.6037,-58.3816);
+                        );
+                        out body;
+                        >;
+                        out skel qt;
+                    `;
+
+                    const response = await fetch('https://overpass-api.de/api/interpreter', {
+                        method: 'POST',
+                        body: query
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Error en la búsqueda');
+                    }
+
+                    const data = await response.json();
+
+                    if (data.elements.length === 0) {
+                        resultCount.textContent = 'No se encontraron veterinarias en esta área.';
+                        resultCount.style.color = '#ff9800';
+                    } else {
+                        resultCount.textContent = `✓ Se encontraron ${data.elements.length} veterinarias en cerca de esta ubicación`;
+                        resultCount.style.color = '#28a745';
+                        data.elements.forEach(element => {
+                            if (element.lat && element.lon) {
+                                createMarker(element);
+                            }
+                        });
+                    }
+
+                } catch (error) {
+                    resultCount.textContent = '⚠ Error en la búsqueda. Inténtalo de nuevo más tarde.';
+                    resultCount.style.color = '#dc3545';
+                } finally {
+                    btn.disabled = false;
+                    btn.innerHTML = '<i class="fas fa-search"></i> Buscar Veterinarias Cercanas';
+                }
+            }
+
+            function clearMarkers() {
+                markers.forEach(marker => map.removeLayer(marker));
+                markers = [];
+                const resultCount = document.getElementById('mapResultCount');
+                if (resultCount) {
+                    resultCount.textContent = '';
+                }
+            }
+
+            function createMarker(place) {
+                const lat = place.lat;
+                const lon = place.lon;
+                const name = place.tags?.name || 'Veterinaria';
+                const address = place.tags?.['addr:street'] || place.tags?.['addr:full'] || 'Dirección no disponible';
+                const phone = place.tags?.phone || 'No disponible';
+                const website = place.tags?.website || '';
+
+                const vetIcon = L.divIcon({
+                    className: 'vet-marker',
+                    html: `
+                        <div class="vet-paw-marker">
+                            <i class="fas fa-paw"></i>
+                        </div>
+                    `,
+                    iconSize: [40, 40],
+                    iconAnchor: [20, 40],
+                    popupAnchor: [0, -40]
+                });
+
+                const marker = L.marker([lat, lon], { icon: vetIcon }).addTo(map);
+
+                const popupContent = `
+                    <div class="vet-popup">
+                        <h6 class="mb-2"><i class="fas fa-paw"></i> <strong>${name}</strong></h6>
+                        <p class="mb-1"><i class="fas fa-map-marker-alt"></i> ${address}</p>
+                        <p class="mb-1"><i class="fas fa-phone"></i> ${phone}</p>
+                        ${website ? `<p class="mb-0"><a href="${website}" target="_blank"><i class="fas fa-globe"></i> Sitio web</a></p>` : ''}
+                    </div>
+                `;
+
+                marker.bindPopup(popupContent);
+                markers.push(marker);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupMap);
+            } else {
+                setupMap();
+            }
+
+            function setupMap() {
+                initMap();
+
+                const searchBtn = document.getElementById('mapSearchBtn');
+                if (searchBtn) {
+                    searchBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        searchVeterinaries();
+                    });
+                }
+
+                const clearBtn = document.getElementById('mapClearBtn');
+                if (clearBtn) {
+                    clearBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        clearMarkers();
+                    });
+                }
+            }
+        })();
+    </script>
+}

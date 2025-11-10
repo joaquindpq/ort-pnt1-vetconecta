@@ -1,0 +1,199 @@
+@model AppMascotas.Models.Turno
+
+@{
+    ViewData["Title"] = "Detalles del Turno";
+}
+
+<div class="container mt-4 mb-5 container-padding-bottom">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm header-gradient-primary">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                        <div class="d-flex align-items-center">
+                            <div class="header-icon-circle">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div>
+                                <h1 class="text-white mb-1 fw-bold">Detalles del Turno</h1>
+                                <p class="text-white mb-0 header-subtitle">Información completa de la cita</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 mt-md-0">
+                            @switch (Model.Estado)
+                            {
+                                case "Pendiente":
+                                    <span class="badge badge-estado badge-estado-warning">
+                                        <i class="fas fa-clock me-2"></i>Pendiente
+                                    </span>
+                                    break;
+                                case "Realizado":
+                                    <span class="badge badge-estado badge-estado-success">
+                                        <i class="fas fa-check-circle me-2"></i>Realizado
+                                    </span>
+                                    break;
+                                case "Cancelado":
+                                    <span class="badge badge-estado badge-estado-danger">
+                                        <i class="fas fa-times-circle me-2"></i>Cancelado
+                                    </span>
+                                    break;
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Información del Turno -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 card-rounded-custom">
+                <div class="card-header card-header-teal">
+                    <h5 class="text-white mb-0 fw-bold">
+                        <i class="fas fa-calendar-check me-2"></i>Información del Turno
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-calendar text-primary me-2"></i>Fecha
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.FechaHora.ToString("dd/MM/yyyy")</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-clock text-warning me-2"></i>Hora
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.FechaHora.ToString("HH:mm")</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-stethoscope text-info me-2"></i>@Html.DisplayNameFor(model => model.Motivo)
+                                </small>
+                                <h6 class="mb-0">@Model.Motivo</h6>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Observaciones))
+                        {
+                            <div class="col-12">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-notes-medical text-warning me-2"></i>@Html.DisplayNameFor(model => model.Observaciones)
+                                    </small>
+                                    <p class="mb-0 text-preline">@Model.Observaciones</p>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-info-circle text-secondary me-2"></i>@Html.DisplayNameFor(model => model.FechaCreacion)
+                                </small>
+                                <p class="mb-0">@Model.FechaCreacion.ToString("dd/MM/yyyy HH:mm")</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Información de la Mascota y Dueño -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm h-100 card-rounded-custom">
+                <div class="card-header card-header-green">
+                    <h5 class="text-white mb-0 fw-bold">
+                        <i class="fas fa-paw me-2"></i>Información del Paciente
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-paw text-success me-2"></i>Mascota
+                                </small>
+                                <h5 class="mb-1 fw-bold">
+                                    <a asp-controller="Mascotas" asp-action="Details" asp-route-id="@Model.MascotaId" 
+                                       class="text-decoration-none text-link-primary">
+                                        @Model.Mascota?.Nombre
+                                    </a>
+                                </h5>
+                                <small class="text-muted">@Model.Mascota?.Especie @(!string.IsNullOrEmpty(Model.Mascota?.Raza) ? $"- {Model.Mascota.Raza}" : "")</small>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>Dueño
+                                </small>
+                                <h6 class="mb-1">
+                                    <a asp-controller="Duenos" asp-action="Details" asp-route-id="@Model.Mascota?.DuenoId" 
+                                       class="text-decoration-none text-link-primary">
+                                        @Model.Mascota?.Dueno?.NombreCompleto
+                                    </a>
+                                </h6>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Mascota?.Dueno?.Telefono))
+                        {
+                            <div class="col-12">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-phone text-success me-2"></i>Tel&eacute;fono de Contacto
+                                    </small>
+                                    <h6 class="mb-0">
+                                        <a href="tel:@Model.Mascota.Dueno.Telefono" class="text-decoration-none text-dark">
+                                            @Model.Mascota.Dueno.Telefono
+                                        </a>
+                                    </h6>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-12">
+                            <a asp-controller="Mascotas" asp-action="Details" asp-route-id="@Model.MascotaId" 
+                               class="btn btn-outline-success w-100 btn-rounded-detail">
+                                <i class="fas fa-eye me-2"></i>Ver Historial Completo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de acci?n -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-3">
+                    <div class="d-flex gap-2 justify-content-end flex-wrap">
+                        <a asp-action="Index" class="btn btn-outline-secondary btn-rounded-outline">
+                            <i class="fas fa-list me-2"></i>Volver al Listado
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning text-white btn-edit-custom">
+                            <i class="fas fa-edit me-2"></i>Editar Turno
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger btn-delete-custom">
+                            <i class="fas fa-trash me-2"></i>Eliminar Turno
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

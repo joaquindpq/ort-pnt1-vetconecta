@@ -1,0 +1,99 @@
+@{
+    ViewData["Title"] = "Registro de Mascotas";
+}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">
+                    Registro de<br />
+                    <span class="brand-highlight">Mascotas</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Registra y gestiona la información de tus mascotas de manera fácil y organizada.
+                </p>
+                <a asp-controller="Mascotas" asp-action="Index" class="btn-comenzar">
+                    <span>Ir al Registro</span>
+                    <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+            <div class="col-lg-6 position-relative d-none d-lg-block">
+                <div class="hero-image-container">
+                    <img src="~/images/landings/landingmascotas.png" alt="mascotas" class="hero-image" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="nueva-forma-section-compact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="nueva-forma-title-compact">
+                Gestiona el perfil de tus <span class="highlight-text">mascotas</span>
+            </h2>
+            <p>Registra datos importantes como nombre, especie, raza, fecha de nacimiento y más.</p>
+        </div>
+    </div>
+</section>
+
+<section class="registro-description-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mx-auto">
+                <p class="registro-description">
+                    Con el Registro de Mascotas, llevá un control completo y ordenado de cada animal que forma parte de tu clínica o consultorio.
+                    En pocos pasos podés guardar toda la información importante: nombre, especie, raza, edad y datos médicos.
+                    Cada mascota queda automáticamente asociada a su dueño, evitando confusiones y permitiendo acceder a su historial en segundos.
+                </p>
+                <p class="registro-description">
+                    Gracias a una interfaz simple y validaciones inteligentes, el registro se vuelve rápido, claro y sin errores.
+                    Además, podés actualizar los datos en cualquier momento y mantener siempre actualizada la información clínica y de contacto.
+                </p>
+
+                <div class="ventajas-card">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="ventajas-content">
+                                <h3 class="ventajas-title">Ventajas:</h3>
+                                <div class="ventajas-features">
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Registro fácil y rápido de nuevas mascotas.</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Asociación automática con el dueño correspondiente.</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Validaciones para evitar errores o duplicados.</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Edición y actualización de información en segundos.</span>
+                                    </div>
+                                    <div class="feature-item">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>Historial visible desde cualquier dispositivo.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-5"> </div>
+                <div class="container">
+                    <div class="text-center">
+                        <h3 class="subtitle-compact">
+                            Porque cada mascota merece su propio espacio, y cada profesional necesita herramientas que le hagan la vida más fácil.
+                        </h3>
+                  <div class="m-5"> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

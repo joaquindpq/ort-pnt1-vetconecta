@@ -1,0 +1,136 @@
+/* ============================================
+   NAVBAR USER DROPDOWN - ESTILOS PERSONALIZADOS
+   ============================================ */
+
+/* Dropdown principal */
+.navbar-vetconecta .dropdown {
+    position: relative;
+}
+
+.navbar-vetconecta .dropdown-toggle::after {
+    display: none;
+}
+
+/* Menú desplegable */
+.navbar-vetconecta .dropdown-menu {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    min-width: 280px;
+    background: white;
+    animation: dropdownSlideIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes dropdownSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Email del usuario */
+.navbar-vetconecta .dropdown-item-text {
+    padding: 0.8rem 1rem;
+    color: #2C3E50;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    margin-bottom: 0.3rem;
+}
+
+.navbar-vetconecta .dropdown-item-text i {
+    color: var(--primary-orange);
+    font-size: 1.1rem;
+}
+
+.navbar-vetconecta .dropdown-item-text strong {
+    font-weight: 600;
+    color: #2C3E50;
+    word-break: break-word;
+}
+
+/* Divider */
+.navbar-vetconecta .dropdown-divider {
+    margin: 0.3rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Botón de cerrar sesión */
+.navbar-vetconecta .dropdown-item {
+    padding: 0.7rem 1rem;
+    color: #2C3E50;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-vetconecta .dropdown-item i {
+    color: #dc3545;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-vetconecta .dropdown-item:hover {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    transform: none;
+}
+
+.navbar-vetconecta .dropdown-item:hover i {
+    color: white;
+    transform: rotate(10deg);
+}
+
+.navbar-vetconecta .dropdown-item:active {
+    background: linear-gradient(135deg, #c82333 0%, #bd2130 100%);
+}
+
+/* Efecto hover en el botón del dropdown */
+.navbar-vetconecta .dropdown .icon-btn:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+
+.navbar-vetconecta .dropdown.show .icon-btn {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .navbar-vetconecta .dropdown-menu {
+        min-width: 250px;
+        margin-top: 0.3rem;
+    }
+
+    .navbar-vetconecta .dropdown-item-text {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+    }
+
+    .navbar-vetconecta .dropdown-item {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-vetconecta .dropdown-menu {
+        min-width: 220px;
+    }
+
+    .navbar-vetconecta .dropdown-item-text strong {
+        font-size: 0.8rem;
+    }
+}

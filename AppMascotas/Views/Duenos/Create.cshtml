@@ -1,0 +1,105 @@
+@model AppMascotas.Models.Dueno
+
+@{
+    ViewData["Title"] = "Registrar Nuevo Dueño";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm header-gradient-primary">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h1 class="text-white mb-1 fw-bold">Registrar Nuevo Dueño</h1>
+                            <p class="text-white mb-0 header-subtitle">Complete el formulario con los datos del propietario</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-4 p-md-5 create-form">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-dismissible fade show card-rounded-custom" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Por favor corrija los siguientes errores:</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="row g-4">
+                            <!-- Nombre Completo -->
+                            <div class="col-md-6">
+                                <label asp-for="NombreCompleto" class="form-label fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>@Html.DisplayNameFor(model => model.NombreCompleto)
+                                </label>
+                                <input asp-for="NombreCompleto" class="form-control form-control-lg form-control-lg-custom" placeholder="Ingrese el nombre completo" />
+                                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+                            </div>
+
+                            <!-- DNI -->
+                            <div class="col-md-6">
+                                <label asp-for="Dni" class="form-label fw-semibold">
+                                    <i class="fas fa-id-card text-info me-2"></i>@Html.DisplayNameFor(model => model.Dni)
+                                </label>
+                                <input asp-for="Dni" class="form-control form-control-lg form-control-lg-custom" placeholder="Ingrese el DNI o cédula" />
+                                <span asp-validation-for="Dni" class="text-danger"></span>
+                            </div>
+
+                            <!-- Teléfono -->
+                            <div class="col-md-6">
+                                <label asp-for="Telefono" class="form-label fw-semibold">
+                                    <i class="fas fa-phone text-success me-2"></i>@Html.DisplayNameFor(model => model.Telefono)
+                                </label>
+                                <input asp-for="Telefono" class="form-control form-control-lg form-control-lg-custom" placeholder="Ingrese el teléfono" />
+                                <span asp-validation-for="Telefono" class="text-danger"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label asp-for="Email" class="form-label fw-semibold">
+                                    <i class="fas fa-envelope text-warning me-2"></i>@Html.DisplayNameFor(model => model.Email)
+                                </label>
+                                <input asp-for="Email" class="form-control form-control-lg form-control-lg-custom" placeholder="correo@ejemplo.com" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <!-- Dirección -->
+                            <div class="col-12">
+                                <label asp-for="Direccion" class="form-label fw-semibold">
+                                    <i class="fas fa-map-marker-alt text-danger me-2"></i>@Html.DisplayNameFor(model => model.Direccion)
+                                </label>
+                                <textarea asp-for="Direccion" class="form-control form-control-lg form-textarea-custom" rows="3" placeholder="Ingrese la dirección completa"></textarea>
+                                <span asp-validation-for="Direccion" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex gap-3 justify-content-end">
+                                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg btn-rounded-outline">
+                                        <i class="fas fa-times me-2"></i>Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-rounded-custom">
+                                        <i class="fas fa-save me-2"></i>Guardar Dueño
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

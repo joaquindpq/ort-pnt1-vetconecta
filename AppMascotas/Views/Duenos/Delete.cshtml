@@ -1,0 +1,172 @@
+@model AppMascotas.Models.Dueno
+
+@{
+    ViewData["Title"] = "Eliminar Dueño";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header con advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-header-danger">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h1 class="text-white mb-1 fw-bold">Confirmar Eliminación</h1>
+                            <p class="text-white mb-0 header-subtitle">¿Está seguro que desea eliminar este dueño?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertencia -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="alert alert-danger border-0 shadow-sm alert-no-border card-rounded-custom" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-circle icon-large me-3"></i>
+                    <div>
+                        <h5 class="alert-heading mb-2">Advertencia Importante</h5>
+                        <p class="mb-0">
+                            Esta acción eliminará permanentemente al dueño <strong>@Model.NombreCompleto</strong> 
+                            y todas las mascotas asociadas. Esta operación no se puede deshacer.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Información del Dueño -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header bg-dark text-white card-rounded-custom">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-user me-2"></i>Información del Dueño
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>@Html.DisplayNameFor(model => model.NombreCompleto)
+                                </small>
+                                <h5 class="mb-0 fw-bold">@Model.NombreCompleto</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-id-card text-info me-2"></i>@Html.DisplayNameFor(model => model.Dni)
+                                </small>
+                                <h6 class="mb-0">@Model.Dni</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="details-box-light">
+                                <small class="text-muted d-block mb-1 fw-semibold">
+                                    <i class="fas fa-phone text-success me-2"></i>@Html.DisplayNameFor(model => model.Telefono)
+                                </small>
+                                <h6 class="mb-0">@Model.Telefono</h6>
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Email))
+                        {
+                            <div class="col-12">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-envelope text-warning me-2"></i>@Html.DisplayNameFor(model => model.Email)
+                                    </small>
+                                    <h6 class="mb-0">@Model.Email</h6>
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(Model.Direccion))
+                        {
+                            <div class="col-12">
+                                <div class="details-box-light">
+                                    <small class="text-muted d-block mb-1 fw-semibold">
+                                        <i class="fas fa-map-marker-alt text-danger me-2"></i>@Html.DisplayNameFor(model => model.Direccion)
+                                    </small>
+                                    <h6 class="mb-0">@Model.Direccion</h6>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mascotas que serán eliminadas -->
+        <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-header card-header-yellow">
+                    <h5 class="mb-0 fw-bold">
+                        <i class="fas fa-paw me-2"></i>Mascotas Asociadas
+                    </h5>
+                </div>
+                <div class="card-body p-4">
+                    @if (Model.Mascotas.Any())
+                    {
+                        <div class="alert alert-warning border-0 card-rounded-custom" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>¡Atención!</strong> Las siguientes <strong>@Model.Mascotas.Count mascota(s)</strong> también serán eliminadas:
+                        </div>
+                        <div class="list-group">
+                            @foreach (var mascota in Model.Mascotas)
+                            {
+                                <div class="list-group-item list-group-item-custom mb-2">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">
+                                                <i class="fas fa-paw text-warning me-2"></i>@mascota.Nombre
+                                            </h6>
+                                            <small class="text-muted">@mascota.Especie @(!string.IsNullOrEmpty(mascota.Raza) ? $"- {mascota.Raza}" : "")</small>
+                                        </div>
+                                        <i class="fas fa-times-circle text-danger icon-large"></i>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success border-0 card-rounded-custom" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Este dueño no tiene mascotas asociadas.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botones de confirmación -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-4 text-center">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex gap-3 justify-content-center">
+                            <a asp-action="Index" class="btn btn-secondary btn-lg btn-pill">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger btn-lg btn-pill">
+                                <i class="fas fa-trash me-2"></i>Confirmar Eliminación
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

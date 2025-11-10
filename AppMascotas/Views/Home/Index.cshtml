@@ -1,0 +1,430 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<!-- Hero Section Reorganizado -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="hero-title">
+                    @if (ViewBag.IsAuthenticated == true)
+                    {
+                        <text>Bienvenido a<br /></text>
+                        <span class="brand-highlight">@ViewBag.NombreVeterinaria</span>
+                    }
+                    else
+                    {
+                        <text>Bienvenido a<br /></text>
+                        <span class="brand-highlight">VetConecta</span>
+                    }
+                </h1>
+                <p class="hero-subtitle">
+                    Organizá tus turnos, pacientes y dueños de mascotas desde un solo lugar.
+                </p>
+                @if (ViewBag.IsAuthenticated == true)
+                {
+                    <a asp-controller="MiVeterinaria" asp-action="Index" class="btn-comenzar">
+                        <span>Comenzar</span>
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Register" class="btn-comenzar">
+                        <span>Comenzar</span>
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                }
+            </div>
+            <div class="col-lg-6 position-relative d-none d-lg-block">
+                <div class="hero-image-container">
+                    <img src="~/images/mascotas.png" alt="mascotas" class="hero-image" />
+                    <div class="paw-prints">
+                        <i class="fas fa-paw paw-1"></i>
+                        <i class="fas fa-paw paw-2"></i>
+                        <i class="fas fa-paw paw-3"></i>
+                        <i class="fas fa-paw paw-4"></i>
+                        <i class="fas fa-paw paw-5"></i>
+                        <i class="fas fa-paw paw-6"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nueva Forma Section - Más Pequeña -->
+<section class="nueva-forma-section-compact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="nueva-forma-title-compact">
+                Una nueva forma de <span class="highlight-text">gestionar tu clínica veterinaria</span>
+            </h2>
+        </div>
+    </div>
+</section>
+
+<!-- Servicios Slider Section -->
+<section class="servicios-section">
+    <div class="container">
+        <h2 class="servicios-title text-center mb-5">Nuestros Servicios</h2>
+        
+        <div class="servicios-slider">
+            <div class="servicios-container">
+                <!-- Servicio 1: Gestión de Dueños -->
+                <div class="servicio-card servicio-card-white">
+                    <div class="servicio-icon servicio-icon-yellow">
+                        <i class="fas fa-users fa-3x"></i>
+                    </div>
+                    <h3 class="servicio-titulo">Gestión de dueños</h3>
+                    <p class="servicio-descripcion">
+                        Registrá y actualizá los datos de los clientes con validaciones automáticas.
+                    </p>
+                    <a href="/landing-gestion-duenos" class="btn btn-dark btn-sm">
+                        Explorar
+                    </a>
+                    <div class="servicio-iconos-bottom">
+                        <i class="fas fa-user"></i>
+                        <i class="fas fa-address-book"></i>
+                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+
+                <!-- Servicio 2: Registro de Mascotas -->
+                <div class="servicio-card servicio-card-white">
+                    <div class="servicio-icon servicio-icon-yellow">
+                        <i class="fas fa-paw fa-3x"></i>
+                    </div>
+                    <h3 class="servicio-titulo">Registro de Mascotas</h3>
+                    <p class="servicio-descripcion">
+                        Asociá cada mascota con su dueño y mantené su historial médico actualizado.
+                    </p>
+                    <a href="/landing-registro-mascotas" class="btn btn-outline-dark btn-sm">
+                        Explorar
+                    </a>
+                </div>
+
+                <!-- Servicio 3: Turnos -->
+                <div class="servicio-card servicio-card-white">
+                    <div class="servicio-icon servicio-icon-yellow">
+                        <i class="fas fa-calendar-alt fa-3x"></i>
+                    </div>
+                    <h3 class="servicio-titulo">Turnos Veterinarios</h3>
+                    <p class="servicio-descripcion">
+                        Programá y gestioná turnos con validación de horarios desde la web.
+                    </p>
+                    <a href="/landing-turnos-veterinarios" class="btn btn-outline-dark btn-sm">
+                        Explorar
+                    </a>
+                </div>
+
+                <!-- Servicio 4: Mapa -->
+                <div class="servicio-card servicio-card-white">
+                    <div class="servicio-icon servicio-icon-yellow">
+                        <i class="fas fa-map-marked-alt fa-3x"></i>
+                    </div>
+                    <h3 class="servicio-titulo">Mapa de Veterinarias</h3>
+                    <p class="servicio-descripcion">
+                        Encontrá veterinarias cercanas usando geolocalización y mapas interactivos.
+                    </p>
+                    <a asp-controller="Mapa" asp-action="Index" class="btn btn-outline-dark btn-sm">
+                        Explorar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Controles del slider -->
+            <div class="slider-controls">
+                <button class="slider-btn slider-btn-prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-btn slider-btn-next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Nueva Sección: ¡Asóciate a VetConecta! -->
+<section class="asociate-section">
+    <div class="container">
+        <!-- Título encima de la card -->
+        <div class="asociate-title-container">
+            <h2 class="asociate-title-main">¡Asóciate a VetConecta!</h2>
+        </div>
+        
+        <div class="asociate-card">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <div class="asociate-content">
+                        <h3 class="asociate-subtitle">Simplifica la gestión de tu clínica veterinaria</h3>
+                        <p class="asociate-description">
+                            Centraliza turnos, fichas médicas y datos de tus pacientes en un solo lugar.
+                        </p>
+                        <div class="asociate-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Administración centralizada</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Historias Clínicas Digitales</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Gestión de Inventario</span>
+                            </div>
+                        </div>
+                        <a asp-controller="Contact" asp-action="Index" class="btn-contactanos">
+                            <span>Contáctanos</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="asociate-image-container">
+                        <img src="~/images/mascotavet.jpg"
+                             alt="Veterinaria con perro" 
+                             class="asociate-image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Google Reviews Section -->
+<section class="google-reviews-section">
+    <div class="container">
+        <div class="google-reviews-header">
+            <h2 class="google-reviews-title">Lo que dicen nuestros clientes</h2>
+            <div class="google-reviews-rating">
+                <div class="google-stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <span class="google-rating-text">4.8 de 5</span>
+                <span class="google-reviews-count">· 127 reseñas</span>
+            </div>
+        </div>
+
+        <div class="google-reviews-slider">
+            <div class="google-reviews-container">
+                <!-- Review 1 -->
+                <div class="google-review-card">
+                    <div class="google-review-header">
+                        <div class="google-review-avatar">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=50&h=50&fit=crop&crop=face" alt="María García">
+                        </div>
+                        <div class="google-review-info">
+                            <div class="google-review-name">María García</div>
+                            <div class="google-review-date">Hace 2 semanas</div>
+                        </div>
+                        <div class="google-review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="google-review-text">
+                        Excelente servicio veterinario. El personal es muy amable y profesional. Mi perrita Luna recibió una atención increíble durante su consulta. Recomiendo ampliamente VetConecta.
+                    </div>
+                    <div class="google-review-response">
+                        <div class="google-response-header">
+                            <div class="google-response-avatar">
+                                <span class="google-response-letter">V</span>
+                            </div>
+                            <div class="google-response-info">
+                                <div class="google-response-name">VetConecta</div>
+                                <div class="google-response-date">Hace 2 semanas</div>
+                            </div>
+                        </div>
+                        <div class="google-response-text">
+                            ¡Gracias María! Nos alegra mucho que Luna haya recibido la atención que se merece. Esperamos verte pronto nuevamente.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="google-review-card">
+                    <div class="google-review-header">
+                        <div class="google-review-avatar">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop&crop=face" alt="Carlos Rodríguez">
+                        </div>
+                        <div class="google-review-info">
+                            <div class="google-review-name">Carlos Rodríguez</div>
+                            <div class="google-review-date">Hace 1 mes</div>
+                        </div>
+                        <div class="google-review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="google-review-text">
+                        La mejor clínica veterinaria que he visitado. Tienen un sistema de turnos online que facilita mucho las cosas. Mi gato Max siempre sale feliz después de sus visitas. ¡5 estrellas!
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="google-review-card">
+                    <div class="google-review-header">
+                        <div class="google-review-avatar">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop&crop=face" alt="Ana López">
+                        </div>
+                        <div class="google-review-info">
+                            <div class="google-review-name">Ana López</div>
+                            <div class="google-review-date">Hace 3 semanas</div>
+                        </div>
+                        <div class="google-review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="google-review-text">
+                        Servicio excepcional. La Dra. Martínez es maravillosa con los animales. Explica todo de manera clara y se nota que realmente le importan las mascotas. Definitivamente mi veterinaria de confianza.
+                    </div>
+                    <div class="google-review-response">
+                        <div class="google-response-header">
+                            <div class="google-response-avatar">
+                                <span class="google-response-letter">V</span>
+                            </div>
+                            <div class="google-response-info">
+                                <div class="google-response-name">VetConecta</div>
+                                <div class="google-response-date">Hace 3 semanas</div>
+                            </div>
+                        </div>
+                        <div class="google-response-text">
+                            ¡Muchas gracias Ana! La Dra. Martínez se emociona mucho con tus palabras. Nos vemos pronto.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="google-review-card">
+                    <div class="google-review-header">
+                        <div class="google-review-avatar">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=50&h=50&fit=crop&crop=face" alt="Javier Martínez">
+                        </div>
+                        <div class="google-review-info">
+                            <div class="google-review-name">Javier Martínez</div>
+                            <div class="google-review-date">Hace 1 semana</div>
+                        </div>
+                        <div class="google-review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="google-review-text">
+                        Excelente atención y precios accesibles. El sistema online para gestionar las citas es muy práctico. Mi perro Toby está muy bien cuidado aquí. ¡Recomendado al 100%!
+                    </div>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="google-review-card">
+                    <div class="google-review-header">
+                        <div class="google-review-avatar">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=50&h=50&fit=crop&crop=face" alt="Laura Fernández">
+                        </div>
+                        <div class="google-review-info">
+                            <div class="google-review-name">Laura Fernández</div>
+                            <div class="google-review-date">Hace 2 días</div>
+                        </div>
+                        <div class="google-review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="google-review-text">
+                        Increíble experiencia. Desde la recepción hasta los veterinarios, todos son muy profesionales y cariñosos con las mascotas. Mi coneja Bella recibió el mejor cuidado posible. ¡Gracias VetConecta!
+                    </div>
+                    <div class="google-review-response">
+                        <div class="google-response-header">
+                            <div class="google-response-avatar">
+                                <span class="google-response-letter">V</span>
+                            </div>
+                            <div class="google-response-info">
+                                <div class="google-response-name">VetConecta</div>
+                                <div class="google-response-date">Hace 1 día</div>
+                            </div>
+                        </div>
+                        <div class="google-response-text">
+                            ¡Hola Laura! Nos encanta saber que Bella recibió el cuidado que necesitaba. ¡Esperamos que sigas eligiéndonos!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles del slider de reseñas -->
+            <div class="google-slider-controls">
+                <button class="google-slider-btn google-slider-btn-prev" id="reviewsPrevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="google-slider-btn google-slider-btn-next" id="reviewsNextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-container">
+            <div class="row text-center text-white">
+                <div class="col-md-3 stat-item">
+                    <i class="fas fa-users fa-2x mb-3"></i>
+                    <h3 class="fw-bold">500+</h3>
+                    <p>Clientes Registrados</p>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <i class="fas fa-paw fa-2x mb-3"></i>
+                    <h3 class="fw-bold">1,200+</h3>
+                    <p>Mascotas en el Sistema</p>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <i class="fas fa-calendar-check fa-2x mb-3"></i>
+                    <h3 class="fw-bold">5,000+</h3>
+                    <p>Turnos Gestionados</p>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <i class="fas fa-star fa-2x mb-3"></i>
+                    <h3 class="fw-bold">4.8/5</h3>
+                    <p>Satisfacción</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/js/slider.js" asp-append-version="true"></script>
+}
+
+
+
+
+
+

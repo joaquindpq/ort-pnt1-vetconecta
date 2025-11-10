@@ -1,0 +1,147 @@
+@model AppMascotas.Models.Mascota
+
+@{
+    ViewData["Title"] = "Registrar Nueva Mascota";
+}
+
+<div class="container mt-4 mb-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm header-gradient-primary">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <h1 class="text-white mb-1 fw-bold">Registrar Nueva Mascota</h1>
+                            <p class="text-white mb-0 header-subtitle">Complete el formulario con los datos de la mascota</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm card-rounded-custom">
+                <div class="card-body p-4 p-md-5 create-form">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger alert-dismissible fade show card-rounded-custom" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Por favor corrija los siguientes errores:</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+
+                        <div class="row g-4">
+                            <!-- Dueño -->
+                            <div class="col-md-6">
+                                <label asp-for="DuenoId" class="form-label fw-semibold">
+                                    <i class="fas fa-user text-primary me-2"></i>@Html.DisplayNameFor(model => model.DuenoId)
+                                </label>
+                                <select asp-for="DuenoId" class="form-select form-select-lg form-control-lg-custom" asp-items="ViewBag.DuenoId">
+                                    <option value="">-- Seleccione un dueño --</option>
+                                </select>
+                                <span asp-validation-for="DuenoId" class="text-danger"></span>
+                            </div>
+
+                            <!-- Nombre -->
+                            <div class="col-md-6">
+                                <label asp-for="Nombre" class="form-label fw-semibold">
+                                    <i class="fas fa-paw text-success me-2"></i>@Html.DisplayNameFor(model => model.Nombre)
+                                </label>
+                                <input asp-for="Nombre" class="form-control form-control-lg form-control-lg-custom" placeholder="Nombre de la mascota" />
+                                <span asp-validation-for="Nombre" class="text-danger"></span>
+                            </div>
+
+                            <!-- Especie -->
+                            <div class="col-md-4">
+                                <label asp-for="Especie" class="form-label fw-semibold">
+                                    <i class="fas fa-tag text-info me-2"></i>@Html.DisplayNameFor(model => model.Especie)
+                                </label>
+                                <input asp-for="Especie" class="form-control form-control-lg form-control-lg-custom" placeholder="Perro, Gato, etc." />
+                                <span asp-validation-for="Especie" class="text-danger"></span>
+                            </div>
+
+                            <!-- Raza -->
+                            <div class="col-md-4">
+                                <label asp-for="Raza" class="form-label fw-semibold">
+                                    <i class="fas fa-dna text-warning me-2"></i>@Html.DisplayNameFor(model => model.Raza)
+                                </label>
+                                <input asp-for="Raza" class="form-control form-control-lg form-control-lg-custom" placeholder="Raza (opcional)" />
+                                <span asp-validation-for="Raza" class="text-danger"></span>
+                            </div>
+
+                            <!-- Sexo -->
+                            <div class="col-md-4">
+                                <label asp-for="Sexo" class="form-label fw-semibold">
+                                    <i class="fas fa-venus-mars text-danger me-2"></i>@Html.DisplayNameFor(model => model.Sexo)
+                                </label>
+                                <select asp-for="Sexo" class="form-select form-select-lg form-control-lg-custom">
+                                    <option value="">-- Seleccione --</option>
+                                    <option value="Macho">Macho</option>
+                                    <option value="Hembra">Hembra</option>
+                                </select>
+                                <span asp-validation-for="Sexo" class="text-danger"></span>
+                            </div>
+
+                            <!-- Fecha de Nacimiento -->
+                            <div class="col-md-4">
+                                <label asp-for="FechaNacimiento" class="form-label fw-semibold">
+                                    <i class="fas fa-birthday-cake text-primary me-2"></i>@Html.DisplayNameFor(model => model.FechaNacimiento)
+                                </label>
+                                <input asp-for="FechaNacimiento" type="date" class="form-control form-control-lg form-control-lg-custom" />
+                                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                            </div>
+
+                            <!-- Color -->
+                            <div class="col-md-4">
+                                <label asp-for="Color" class="form-label fw-semibold">
+                                    <i class="fas fa-palette text-info me-2"></i>@Html.DisplayNameFor(model => model.Color)
+                                </label>
+                                <input asp-for="Color" class="form-control form-control-lg form-control-lg-custom" placeholder="Color (opcional)" />
+                                <span asp-validation-for="Color" class="text-danger"></span>
+                            </div>
+
+                            <!-- Peso -->
+                            <div class="col-md-4">
+                                <label asp-for="Peso" class="form-label fw-semibold">
+                                    <i class="fas fa-weight text-success me-2"></i>@Html.DisplayNameFor(model => model.Peso)
+                                </label>
+                                <input asp-for="Peso" type="number" step="0.1" class="form-control form-control-lg form-control-lg-custom" placeholder="Peso en kg" />
+                                <span asp-validation-for="Peso" class="text-danger"></span>
+                            </div>
+
+                            <!-- Observaciones -->
+                            <div class="col-12">
+                                <label asp-for="Observaciones" class="form-label fw-semibold">
+                                    <i class="fas fa-notes-medical text-warning me-2"></i>@Html.DisplayNameFor(model => model.Observaciones)
+                                </label>
+                                <textarea asp-for="Observaciones" class="form-control form-control-lg form-textarea-custom" rows="4" placeholder="Información adicional, alergias, condiciones médicas, etc."></textarea>
+                                <span asp-validation-for="Observaciones" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex gap-3 justify-content-end">
+                                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg btn-rounded-outline">
+                                        <i class="fas fa-times me-2"></i>Cancelar
+                                    </a>
+                                    <button type="submit" class="btn btn-success btn-lg btn-rounded-custom">
+                                        <i class="fas fa-save me-2"></i>Guardar Mascota
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

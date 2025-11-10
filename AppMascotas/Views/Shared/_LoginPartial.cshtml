@@ -1,0 +1,39 @@
+@using Microsoft.AspNetCore.Identity
+@using AppMascotas.Models
+@inject SignInManager<Veterinaria> SignInManager
+@inject UserManager<Veterinaria> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="dropdown">
+        <button class="icon-btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false" title="Mi Cuenta">
+            <i class="fas fa-user"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end modern-dropdown" aria-labelledby="userDropdown">
+            <li class="dropdown-header-modern">
+                <div class="user-avatar-circle">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <div class="user-info">
+                    <strong class="user-name">@User.Identity?.Name</strong>
+                    <small class="user-role">Veterinaria</small>
+                </div>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" class="d-inline w-100">
+                    <button type="submit" class="dropdown-item-modern logout-btn">
+                        <i class="fas fa-sign-out-alt me-2"></i>
+                        <span>Cerrar Sesión</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <a asp-controller="Account" asp-action="Login" class="icon-btn" title="Iniciar Sesión">
+        <i class="fas fa-user"></i>
+    </a>
+}
