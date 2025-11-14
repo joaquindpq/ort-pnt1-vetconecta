@@ -19,7 +19,6 @@ namespace AppMascotas.Controllers
             _userManager = userManager;
         }
 
-        // GET: MiVeterinaria
         public async Task<IActionResult> Index()
         {
             var veterinariaId = _userManager.GetUserId(User);
@@ -30,7 +29,6 @@ namespace AppMascotas.Controllers
                 return NotFound();
             }
 
-            // Obtener estadísticas
             var totalDuenos = await _context.Duenos
                 .Where(d => d.VeterinariaId == veterinariaId)
                 .CountAsync();
@@ -52,7 +50,6 @@ namespace AppMascotas.Controllers
                            t.FechaHora.Date == DateTime.Today)
                 .CountAsync();
 
-            // Obtener últimos dueños registrados
             var ultimosDuenos = await _context.Duenos
                 .Where(d => d.VeterinariaId == veterinariaId)
                 .OrderByDescending(d => d.FechaRegistro)
@@ -60,7 +57,6 @@ namespace AppMascotas.Controllers
                 .Include(d => d.Mascotas)
                 .ToListAsync();
 
-            // Obtener últimas mascotas registradas
             var ultimasMascotas = await _context.Mascotas
                 .Where(m => m.VeterinariaId == veterinariaId)
                 .OrderByDescending(m => m.FechaRegistro)
@@ -68,7 +64,6 @@ namespace AppMascotas.Controllers
                 .Include(m => m.Dueno)
                 .ToListAsync();
 
-            // Obtener próximos turnos
             var proximosTurnos = await _context.Turnos
                 .Where(t => t.VeterinariaId == veterinariaId && 
                            t.FechaHora >= DateTime.Now)
@@ -78,7 +73,6 @@ namespace AppMascotas.Controllers
                     .ThenInclude(m => m.Dueno)
                 .ToListAsync();
 
-            // Distribución por especie
             var distribucionEspecies = await _context.Mascotas
                 .Where(m => m.VeterinariaId == veterinariaId)
                 .GroupBy(m => m.Especie)
@@ -86,7 +80,6 @@ namespace AppMascotas.Controllers
                 .OrderByDescending(x => x.Cantidad)
                 .ToListAsync();
 
-            // Pasar datos a la vista
             ViewBag.Veterinaria = veterinaria;
             ViewBag.TotalDuenos = totalDuenos;
             ViewBag.TotalMascotas = totalMascotas;
@@ -101,8 +94,7 @@ namespace AppMascotas.Controllers
             return View();
         }
 
-        // GET: MiVeterinaria/Editar
-        public async Task<IActionResult> Editar()
+        public async Task<IActionResult> Edit()
         {
             var veterinariaId = _userManager.GetUserId(User);
             var veterinaria = await _userManager.FindByIdAsync(veterinariaId);
@@ -115,10 +107,9 @@ namespace AppMascotas.Controllers
             return View(veterinaria);
         }
 
-        // POST: MiVeterinaria/Editar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Editar([Bind("Id,NombreVeterinaria,Email,PhoneNumber,Direccion")] Veterinaria veterinaria)
+        public async Task<IActionResult> Edit([Bind("Id,NombreVeterinaria,Email,PhoneNumber,Direccion")] Veterinaria veterinaria)
         {
             var veterinariaId = _userManager.GetUserId(User);
             
@@ -127,7 +118,6 @@ namespace AppMascotas.Controllers
                 return Forbid();
             }
 
-            // Remover validaciones de propiedades de navegación
             ModelState.Remove("Duenos");
             ModelState.Remove("Mascotas");
             ModelState.Remove("Turnos");
@@ -143,7 +133,6 @@ namespace AppMascotas.Controllers
                         return NotFound();
                     }
 
-                    // Actualizar solo los campos permitidos
                     veterinariaActual.NombreVeterinaria = veterinaria.NombreVeterinaria;
                     veterinariaActual.PhoneNumber = veterinaria.PhoneNumber;
                     veterinariaActual.Direccion = veterinaria.Direccion;

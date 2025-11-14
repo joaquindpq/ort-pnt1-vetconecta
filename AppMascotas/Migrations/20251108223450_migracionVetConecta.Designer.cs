@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppMascotas.Migrations
 {
     [DbContext(typeof(EscuelaDatabaseContext))]
-    [Migration("20251108223450_IdentityYSistemaVeterinario")]
-    partial class IdentityYSistemaVeterinario
+    [Migration("20251108223450_migracionVetConecta")]
+    partial class migracionVetConecta
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

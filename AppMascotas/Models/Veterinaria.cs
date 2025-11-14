@@ -18,7 +18,6 @@ namespace AppMascotas.Models
         [Display(Name = "Teléfono")]
         public string? Telefono { get; set; }
 
-        // Relaciones
         public virtual ICollection<Dueno> Duenos { get; set; } = new List<Dueno>();
         public virtual ICollection<Mascota> Mascotas { get; set; } = new List<Mascota>();
         public virtual ICollection<Turno> Turnos { get; set; } = new List<Turno>();

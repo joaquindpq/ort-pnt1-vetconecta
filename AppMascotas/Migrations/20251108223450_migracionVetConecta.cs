@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AppMascotas.Migrations
 {
     /// <inheritdoc />
-    public partial class IdentityYSistemaVeterinario : Migration
+    public partial class migracionVetConecta : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

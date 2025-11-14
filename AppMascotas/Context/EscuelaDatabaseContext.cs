@@ -11,7 +11,6 @@ namespace AppMascotas.Context
         {
         }
 
-        // Entidades del sistema veterinario
         public DbSet<Dueno> Duenos { get; set; }
         public DbSet<Mascota> Mascotas { get; set; }
         public DbSet<Turno> Turnos { get; set; }
@@ -20,7 +19,6 @@ namespace AppMascotas.Context
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configurar relaciones y restricciones adicionales
             modelBuilder.Entity<Dueno>()
                 .HasOne(d => d.Veterinaria)
                 .WithMany(v => v.Duenos)
@@ -51,7 +49,6 @@ namespace AppMascotas.Context
                 .HasForeignKey(t => t.VeterinariaId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // Índices únicos
             modelBuilder.Entity<Dueno>()
                 .HasIndex(d => new { d.Dni, d.VeterinariaId })
                 .IsUnique();

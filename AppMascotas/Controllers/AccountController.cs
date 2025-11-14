@@ -22,7 +22,6 @@ namespace AppMascotas.Controllers
             _logger = logger;
         }
 
-        // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Register()
@@ -34,7 +33,6 @@ namespace AppMascotas.Controllers
             return View();
         }
 
-        // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -69,7 +67,6 @@ namespace AppMascotas.Controllers
             return View(model);
         }
 
-        // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string? returnUrl = null)
@@ -83,7 +80,6 @@ namespace AppMascotas.Controllers
             return View();
         }
 
-        // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -122,7 +118,6 @@ namespace AppMascotas.Controllers
             return View(model);
         }
 
-        // POST: /Account/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
@@ -132,7 +127,6 @@ namespace AppMascotas.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: /Account/AccessDenied
         [HttpGet]
         public IActionResult AccessDenied()
         {

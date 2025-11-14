@@ -24,7 +24,6 @@ namespace AppMascotas.Controllers
             _userManager = userManager;
         }
 
-        // GET: Mascotas
         public async Task<IActionResult> Index(string searchString)
         {
             var veterinariaId = _userManager.GetUserId(User);
@@ -33,7 +32,6 @@ namespace AppMascotas.Controllers
                 .Include(m => m.Dueno)
                 .AsQueryable();
 
-            // Aplicar búsqueda si hay un término
             if (!string.IsNullOrEmpty(searchString))
             {
                 mascotasQuery = mascotasQuery.Where(m =>
@@ -53,7 +51,6 @@ namespace AppMascotas.Controllers
             return View(mascotas);
         }
 
-        // GET: Mascotas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -75,7 +72,6 @@ namespace AppMascotas.Controllers
             return View(mascota);
         }
 
-        // GET: Mascotas/Create
         public async Task<IActionResult> Create()
         {
             var veterinariaId = _userManager.GetUserId(User);
@@ -90,16 +86,12 @@ namespace AppMascotas.Controllers
             return View();
         }
 
-        // POST: Mascotas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nombre,Especie,Raza,FechaNacimiento,Sexo,Color,Peso,Observaciones,DuenoId")] Mascota mascota)
         {
             var veterinariaId = _userManager.GetUserId(User)!;
             
-            // Remover validaciones de propiedades que no están en el formulario
             ModelState.Remove("VeterinariaId");
             ModelState.Remove("Veterinaria");
             ModelState.Remove("Dueno");
@@ -129,7 +121,6 @@ namespace AppMascotas.Controllers
             return View(mascota);
         }
 
-        // GET: Mascotas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -158,9 +149,6 @@ namespace AppMascotas.Controllers
             return View(mascota);
         }
 
-        // POST: Mascotas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Especie,Raza,FechaNacimiento,Sexo,Color,Peso,Observaciones,FechaRegistro,DuenoId,VeterinariaId")] Mascota mascota)
@@ -176,7 +164,6 @@ namespace AppMascotas.Controllers
                 return Forbid();
             }
 
-            // Remover validaciones de propiedades de navegación
             ModelState.Remove("Veterinaria");
             ModelState.Remove("Dueno");
             ModelState.Remove("Turnos");
@@ -216,7 +203,6 @@ namespace AppMascotas.Controllers
             return View(mascota);
         }
 
-        // GET: Mascotas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -238,7 +224,6 @@ namespace AppMascotas.Controllers
             return View(mascota);
         }
 
-        // POST: Mascotas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -250,13 +235,11 @@ namespace AppMascotas.Controllers
 
             if (mascota != null)
             {
-                // Primero eliminar todos los turnos asociados
                 if (mascota.Turnos.Any())
                 {
                     _context.Turnos.RemoveRange(mascota.Turnos);
                 }
 
-                // Luego eliminar la mascota
                 _context.Mascotas.Remove(mascota);
                 
                 await _context.SaveChangesAsync();

@@ -9,13 +9,11 @@ namespace AppMascotas.Context
     {
         public EscuelaDatabaseContext CreateDbContext(string[] args)
         {
-            // Construir la configuración desde appsettings.json
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
 
-            // Crear las opciones del DbContext
             var optionsBuilder = new DbContextOptionsBuilder<EscuelaDatabaseContext>();
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 
