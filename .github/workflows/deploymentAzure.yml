@@ -41,7 +41,7 @@ jobs:
         name: webapp
         path: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
     - name: Azure Login
-      uses: azure/login@v2
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AppMascotas20251114102410_SPN }}
     - name: Deploy to Azure WebApp
