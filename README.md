@@ -2,6 +2,10 @@
 https://appmascotas20251114102410-cycwhjb2ehezfcbs.canadacentral-01.azurewebsites.net/
 
 
+
+
+
+
 ## 🐾 AppMascotas – Guía de Instalación
 
 Este proyecto utiliza **.NET 8**, **Entity Framework Core** y **SQL Server**.  
