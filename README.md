@@ -1,4 +1,8 @@
-# 🐾 AppMascotas – Guía de Instalación
+## ☁️ URL del sitio en la nube de Azure
+https://appmascotas20251114102410-cycwhjb2ehezfcbs.canadacentral-01.azurewebsites.net/
+
+
+## 🐾 AppMascotas – Guía de Instalación
 
 Este proyecto utiliza **.NET 8**, **Entity Framework Core** y **SQL Server**.  
 (Las rutas de navegación que se mencionan deben reemplazarse por las configuradas en cada computadora)
