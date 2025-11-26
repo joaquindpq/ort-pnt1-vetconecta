@@ -54,3 +54,4 @@ Esto aplicará la migración existente y creará las tablas en **SQL Server**.
    **Debug > Start Debugging**
 2. Transcurridos unos segundos, la aplicación se abrirá en el navegador en la ruta: https://localhost:7218/
 
+
